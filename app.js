@@ -30,9 +30,16 @@ function setupEventListeners() {
     document.getElementById('loginForm').addEventListener('submit', handleLogin);
 
     // UI Navigation
-    document.getElementById('importBtn').onclick = () => document.getElementById('importModal').style.display = 'block';
+    document.getElementById('importBtn').onclick = () => {
+        document.getElementById('importModal').style.display = 'block';
+        closeSidebar();
+    };
     document.getElementById('logoutBtn').onclick = logout;
     document.getElementById('refreshBtn').onclick = loadChannels;
+
+    // Mobile Menu
+    document.getElementById('menuToggle').onclick = openSidebar;
+    document.getElementById('closeSidebar').onclick = closeSidebar;
 
     // Modals
     document.querySelector('.close').onclick = () => document.getElementById('importModal').style.display = 'none';
@@ -42,8 +49,16 @@ function setupEventListeners() {
     document.getElementById('channelSearch').oninput = (e) => filterTable(e.target.value);
 
     // Actions
-    document.getElementById('exportBtn').onclick = exportAll;
-    document.getElementById('appUrlBtn').onclick = copyAppUrl;
+    document.getElementById('exportBtn').onclick = () => { exportAll(); closeSidebar(); };
+    document.getElementById('appUrlBtn').onclick = () => { copyAppUrl(); closeSidebar(); };
+}
+
+function openSidebar() {
+    document.getElementById('sidebar').classList.add('open');
+}
+
+function closeSidebar() {
+    document.getElementById('sidebar').classList.remove('open');
 }
 
 async function handleLogin(e) {
