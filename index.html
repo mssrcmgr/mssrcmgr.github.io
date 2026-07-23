@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MakeSense - Channel Manager</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Login Overlay -->
+    <div id="loginOverlay" class="overlay">
+        <div class="login-card">
+            <div class="logo">
+                <i class="fas fa-tv"></i>
+                <span>Channel Manager</span>
+            </div>
+            <h2>Admin Login</h2>
+            <p>Enter your access token to manage sources.</p>
+            <form id="loginForm">
+                <div class="form-group">
+                    <div class="input-wrapper">
+                        <i class="fas fa-key"></i>
+                        <input type="password" id="adminPassword" placeholder="Admin Password" required>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary">UNLOCK DASHBOARD</button>
+            </form>
+            <div id="loginMessage" class="message"></div>
+        </div>
+    </div>
+
+    <!-- Main Dashboard -->
+    <div id="dashboard" class="dashboard-container" style="display: none;">
+        <aside class="sidebar">
+            <div class="logo">
+                <i class="fas fa-brain"></i>
+                <span>MakeSense</span>
+            </div>
+            <nav>
+                <a href="#" class="active"><i class="fas fa-th-large"></i> Dashboard</a>
+                <a href="#" id="importBtn"><i class="fas fa-file-import"></i> Import Source</a>
+                <a href="#" id="exportBtn"><i class="fas fa-file-export"></i> Export All</a>
+                <a href="#" id="appUrlBtn"><i class="fas fa-link"></i> App Source URL</a>
+            </nav>
+            <div class="sidebar-footer">
+                <button id="logoutBtn" class="btn-text"><i class="fas fa-sign-out-alt"></i> Logout</button>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <header class="content-header">
+                <div class="search-bar">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="channelSearch" placeholder="Search channels...">
+                </div>
+                <div class="header-actions">
+                    <div class="stats">
+                        <div class="stat-item">
+                            <label>TOTAL</label>
+                            <span id="totalChannels">0</span>
+                        </div>
+                        <div class="stat-item">
+                            <label>ACTIVE</label>
+                            <span id="activeChannels">0</span>
+                        </div>
+                    </div>
+                    <button class="btn btn-primary" id="refreshBtn"><i class="fas fa-sync"></i> Refresh</button>
+                </div>
+            </header>
+
+            <div class="table-container">
+                <table id="channelsTable">
+                    <thead>
+                        <tr>
+                            <th>Logo</th>
+                            <th>Name</th>
+                            <th>Category</th>
+                            <th>URL</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="channelsBody">
+                        <!-- Channels will be loaded here -->
+                    </tbody>
+                </table>
+            </div>
+        </main>
+    </div>
+
+    <!-- Modals -->
+    <div id="importModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Import Channels</h2>
+            <p>Paste your M3U or JSON content below.</p>
+            <textarea id="importArea" placeholder="#EXTM3U..."></textarea>
+            <div class="modal-actions">
+                <button id="confirmImport" class="btn btn-primary">PROCESS IMPORT</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
