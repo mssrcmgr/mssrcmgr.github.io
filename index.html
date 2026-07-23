@@ -33,7 +33,18 @@
 
     <!-- Main Dashboard -->
     <div id="dashboard" class="dashboard-container" style="display: none;">
-        <aside class="sidebar">
+        <!-- Mobile Header -->
+        <header class="mobile-header">
+            <button id="menuToggle" class="btn-icon"><i class="fas fa-bars"></i></button>
+            <div class="logo">
+                <i class="fas fa-tv"></i>
+                <span>Channel Manager</span>
+            </div>
+            <div style="width: 40px;"></div> <!-- Spacer -->
+        </header>
+
+        <aside class="sidebar" id="sidebar">
+            <button id="closeSidebar" class="btn-icon mobile-only"><i class="fas fa-times"></i></button>
             <div class="logo">
                 <i class="fas fa-brain"></i>
                 <span>MakeSense</span>
